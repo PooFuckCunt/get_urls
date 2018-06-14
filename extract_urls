@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 #extracts all urls from home directory stored in sqlite files
 strings $(find ~ -iname '*sqlite*') |grep -o '"http://[^"]*"' |sort -nr |uniq > /tmp/urls.txt
 strings $(find ~ -iname '*chrom*') |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -nr |uniq >> /tmp/urls.txt
