@@ -3,6 +3,6 @@
 strings $(find ~ -name places.sqlite) |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -nr |uniq > /tmp/urls.txt
 strings $(find ~ -iname '*history*' |grep -i chrom) |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -nr |uniq >> /tmp/urls.txt
 sort -nr /tmp/urls.txt |uniq > /tmp/urllist.txt
-grep -v '.moc' /tmp/urllist.txt  | awk '{print $1}' > /tmp/urls.txt
+awk '{print $1}' /tmp/urllist.txt   > /tmp/urls.txt
 echo "Found `cat /tmp/urls.txt |wc -l` URLs listed in /tmp/urls.txt uncleaned version is /tmp/urllist.txt"
 xdg-open /tmp/urls.txt
