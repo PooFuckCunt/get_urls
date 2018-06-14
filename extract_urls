@@ -1,0 +1,6 @@
+#!bin/bash
+#extracts all urls from home directory stored in sqlite files
+strings $(find ~ -iname '*sqlite*') |grep -o '"http://[^"]*"' |sort -nr |uniq > /tmp/urls.txt
+strings $(find ~/.config/chromium/) |grep -o '"http://[^"]*"' |sort -nr |uniq >> /tmp/urls.txt
+strings ~/.config/chromium/Default/History |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -n |uniq >> /tmp/urls.txt
+sort -nr /tmp/urls.txt |uniq > /tmp/urllist.txt
